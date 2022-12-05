@@ -5,7 +5,10 @@ import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../_services';
 
-@Component({ templateUrl: 'login.component.html' })
+@Component({
+    templateUrl: 'login.component.html',
+    styleUrls: ['./login.component.scss'],
+})
 export class LoginComponent implements OnInit {
     loginForm!: FormGroup;
     loading = false;
@@ -17,9 +20,9 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService
-    ) { 
+    ) {
         // redirect to home if already logged in
-        if (this.authenticationService.userValue) { 
+        if (this.authenticationService.userValue) {
             this.router.navigate(['/']);
         }
     }

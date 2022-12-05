@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,700,700italic");
+@import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900");
+$font1: "Ubuntu";
+$font2: "Inter";
+
+form {
+  position: relative;
+  top: 50%;
+  transform: translateY(50%);
+  display: flex;
+  height: auto;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+  font-family: $font1;
+  font-weight: 500;
+  font-size: 36px;
+  margin-bottom: 32px;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #969696;
+  color: #969696;
+  padding-bottom: 13px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 20px;
+  font-family: $font1;
+  font-size: 20px;
+  width: 307px;
+  &::placeholder {
+    font-family: $font1;
+    color: #969696;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  cursor: pointer;
+  background: #118bdd;
+  color: #fff;
+  border: none;
+  font-family: $font1;
+  font-weight: 300;
+  font-size: 26px;
+  padding: 9px 8px;
+  min-width: 339px;
+  margin-top: 45px;
+  &:hover {
+    background: #0e75ba;
+  }
+}
+
+.mini-error {
+   color: #df0a0a;
+   font-family: $font1;
+   font-size: 12px;
+   padding-top: 5px;
+}
