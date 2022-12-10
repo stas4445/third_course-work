@@ -13,7 +13,7 @@
         [ngClass]="{ 'is-invalid': submitted && f['username'].errors }"
       />
       <div *ngIf="submitted && f['username'].errors">
-        <div class="mini-error" *ngIf="f['username'].errors['required']">Username is required</div>
+        <div class="mini-error" *ngIf="f['username'].errors['required']">Неверный логин</div>
       </div>
     </div>
     <div class="form-group">
@@ -24,7 +24,7 @@
         [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
       />
       <div *ngIf="submitted && f['password'].errors">
-        <div class="mini-error" *ngIf="f['password'].errors['required']">Password is required</div>
+        <div class="mini-error" *ngIf="f['password'].errors['required']">Неверный пароль</div>
       </div>
     </div>
     <button [disabled]="loading">

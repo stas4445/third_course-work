@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers';
@@ -13,19 +14,28 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { Journal1Component } from './journal1/journal1.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './_services/in-memory-data.service';
 
 @NgModule({
     imports: [
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AppRoutingModule
+        HttpClientInMemoryWebApiModule.forRoot(
+            InMemoryDataService, { dataEncapsulation: false }
+        ),
+        AppRoutingModule,
+        NgbModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
         AdminComponent,
-        LoginComponent
+        LoginComponent,
+        Journal1Component
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

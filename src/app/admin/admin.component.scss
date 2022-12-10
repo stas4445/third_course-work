@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,700,700italic");
+.container {
+  margin-left: 40px;
+  font-family: "Ubuntu";
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 32px;
+  margin-bottom: 32px;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  counter-reset: li;
+  li {
+    position: relative;
+    border-left: 3px solid #118bdd;
+    padding: 16px 20px 16px 28px;
+    margin-left: 43px;
+    &::before {
+      line-height: 32px;
+      position: absolute;
+      top: 10px;
+      left: -80px;
+      width: 80px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #118bdd;
+      counter-increment: li;
+      content: counter(li);
+      box-sizing: border-box;
+    }
+  }
+}

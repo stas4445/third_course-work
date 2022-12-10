@@ -1,0 +1,235 @@
+<div class="head">
+  <h1>Группа {{ clicks }}</h1>
+  <div *ngIf="isAdmin">
+    <label for="new1">first name: </label>
+    <input id="new1" #firstName />
+    <label for="new2">last name: </label>
+    <input id="new2" #lastName />
+    <label for="new3">group: </label>
+    <input id="new3" #group />
+    <button
+      type="button"
+      class="add-button"
+      (click)="
+        add(firstName.value, lastName.value, group.value);
+        firstName.value = '';
+        lastName.value = '';
+        group.value = ''
+      "
+    >
+      Add
+    </button>
+  </div>
+  <div class="pagination">
+    <button (click)="clicked1($event)">-</button>
+    <button (click)="clicked2($event)">+</button>
+  </div>
+  <!-- <ngb-pagination
+    [maxSize]="2"
+    [collectionSize]="collectionSize"
+    [pageSize]="itemsPerPage"
+    [(page)]="page"
+    (pageChange)="onPageChanged($event)"
+    size="sm"
+  >
+  </ngb-pagination> -->
+</div>
+
+<table class="table">
+  <tbody>
+    <tr class="header">
+      <td class="td-large" colspan="2">Дни недели</td>
+      <td class="day" colspan="5">Понедельник</td>
+      <td class="day" colspan="5">Вторник</td>
+      <td class="day" colspan="5">Среда</td>
+      <td class="day" colspan="5">Четверг</td>
+      <td class="day" colspan="5">Пятница</td>
+      <td class="day" colspan="5">Суббота</td>
+      <td class="td-large2" colspan="10">Всего пропущено часов</td>
+    </tr>
+    <tr>
+      <td class="align-c" colspan="2">Дата занятий</td>
+      <td colspan="5"></td>
+      <td colspan="5"></td>
+      <td colspan="5"></td>
+      <td colspan="5"></td>
+      <td colspan="5"></td>
+      <td colspan="5"></td>
+      <td class="align-c refont" colspan="5">по уважит. пр.</td>
+      <td class="align-c refont" colspan="5">по не уважит. пр.</td>
+    </tr>
+    <tr>
+      <td class="align-c newpad" colspan="2">Форма занятий</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="align-c" colspan="2">Количество академических часов</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="align-c td-large3" colspan="2">Название дисциплины</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr *ngFor="let student of students; let i = index">
+      <td class="align-c grey">{{ i + 1 }}</td>
+      <td class="name">{{ student.firstName }} {{ student.lastName }}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>

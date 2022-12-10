@@ -6,6 +6,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers';
 import { Role } from './_models';
+import { Journal1Component } from './journal1/journal1.component';
 
 const routes: Routes = [
     {
@@ -13,6 +14,12 @@ const routes: Routes = [
         component: HomeComponent,
         canActivate: [AuthGuard]
     },
+    {
+        path: 'journal1',
+        component: Journal1Component,
+        canActivate: [AuthGuard]
+    },
+    
     {
         path: 'admin',
         component: AdminComponent,

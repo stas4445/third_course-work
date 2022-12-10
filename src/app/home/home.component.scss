@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,700,700italic");
+
+.home {
+  font-family: "Ubuntu";
+}
+
+.journals {
+  display: flex;
+  gap: 150px;
+  justify-content: center;
+}
+
+.journal {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 36px;
+  width: 373px;
+  text-align: center;
+  border: 1px solid #969696;
+  border-radius: 3px;
+  padding-top: 190px;
+  padding-bottom: 190px;
+}

@@ -1,13 +1,13 @@
-<div class="card mt-4">
-    <h4 class="card-header">Home</h4>
-    <div class="card-body">
-        <p>You're logged in with Angular 10 & JWT!!</p>
-        <p>Your role is: <strong>{{user.role}}</strong>.</p>
-        <p>This page can be accessed by <u>all authenticated users</u>.</p>
-        <p class="mb-1">Current user from secure api end point:</p>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="userFromApi">
-            <li>{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
-        </ul>
-    </div>
+<div class="home">
+  <div class="journals">
+    <a routerLink="/journal1" class="journal">Журнал посещаемости</a>
+    <a href="" class="journal">Журнал нагрузок преподавателей</a>
+  </div>
+
+  <!-- Только, если в качестве подвала вывести -->
+  <!-- <div class="footer">
+    <ul *ngIf="userFromApi">
+      <li>{{ userFromApi.firstName }} {{ userFromApi.lastName }}</li>
+    </ul>
+  </div> -->
 </div>

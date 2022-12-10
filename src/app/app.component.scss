@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,300italic,regular,italic,500,500italic,700,700italic");
+a {
+  font-family: "Ubuntu";
+  font-size: 18px;
+  color: #118bdd;
+  text-decoration: none;
+}
+
+.nav {
+   padding: 40px;
+   display: flex;
+   justify-content: space-between;
+   align-items: baseline;
+}
+
+.logout {
+   display: flex;
+   align-items: center;
+   gap: 14px;
+   cursor: pointer;
+   img {
+      width: 20px;
+   }
+}
+.menu-layout {
+   color: #118bdd;
+   display: flex;
+   gap: 50px;
+}
+
+.only {
+   display: flex;
+   gap: 50px;
+}

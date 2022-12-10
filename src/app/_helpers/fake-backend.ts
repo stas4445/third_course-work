@@ -6,8 +6,9 @@ import { delay, materialize, dematerialize } from 'rxjs/operators';
 import { Role } from '../_models';
 
 const users = [
-    { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-    { id: 2, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
+    { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin, groups: [1, 2] },
+    { id: 2, username: 'user1', password: 'user1', firstName: 'Вячеслав', lastName: 'Сельпо', role: Role.User, groups: [1] },
+    { id: 3, username: 'user2', password: 'user2', firstName: 'Ирина', lastName: 'Калитка', role: Role.User, groups: [1, 2] },
 ];
 
 @Injectable()
@@ -15,7 +16,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const { url, method, headers, body } = request;
 
-        return handleRoute();        
+        return handleRoute();
 
         function handleRoute() {
             switch (true) {
@@ -37,14 +38,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function authenticate() {
             const { username, password } = body;
             const user = users.find(x => x.username === username && x.password === password);
-            if (!user) return error('Username or password is incorrect');
+            if (!user) return error('Логин или пароль неверен');
             return ok({
                 id: user.id,
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.role,
-                token: `fake-jwt-token.${user.id}`
+                token: `fake-jwt-token.${user.id}`,
+                groups: user.groups
             });
         }
 
@@ -65,7 +67,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // helper functions
 
-        function ok(body:any) {
+        function ok(body: any) {
             return of(new HttpResponse({ status: 200, body }))
                 .pipe(delay(500)); // delay observable to simulate server api call
         }
@@ -75,7 +77,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 .pipe(materialize(), delay(500), dematerialize()); // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648);
         }
 
-        function error(message:any) {
+        function error(message: any) {
             return throwError({ status: 400, error: { message } })
                 .pipe(materialize(), delay(500), dematerialize());
         }
@@ -88,6 +90,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function isAdmin() {
             return isLoggedIn() && currentUser()!.role === Role.Admin;
         }
+
+        // function isUserGroups(page:number) {
+        //     return page === users.filter(s => s.group == page);
+        // }
 
         function currentUser() {
             if (!isLoggedIn()) return;
@@ -103,7 +109,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 }
 
 export const fakeBackendProvider = {
-    // use fake backend in place of Http service for backend-less development
+
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,
     multi: true

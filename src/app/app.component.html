@@ -1,13 +1,17 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
-  <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/">Home</a>
-      <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-      <a class="nav-item nav-link" (click)="logout()">Logout</a>
+<div class="nav" *ngIf="user">
+  <div class="menu-layout">
+    <!-- <a *ngIf="!isAdmin">Вы вошли как преподаватель</a>
+    <a *ngIf="isAdmin">Вы вошли как администратор</a> -->
+    <div class="only">
+      <a routerLink="/" >Главная</a>
+      <a routerLink="/admin" *ngIf="isAdmin">Пользователи</a>
+    </div>
   </div>
-</nav>
+  <a class="logout" (click)="logout()"
+    >Выйти<img src="../assets/logout.png"
+  /></a>
+</div>
 
-<!-- main app container -->
-<div class="container">
+<div>
   <router-outlet></router-outlet>
 </div>
