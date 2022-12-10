@@ -1,12 +1,19 @@
 <div class="head">
-  <h1>Группа {{ clicks }}</h1>
+  <div class="group">
+    <h1>Группа {{ clicks }}</h1>
+    <div class="pagination">
+      <button (click)="clicked2($event)">
+        <img src="../../assets/up.png" />
+      </button>
+      <button (click)="clicked1($event)">
+        <img src="../../assets/down.png" />
+      </button>
+    </div>
+  </div>
   <div *ngIf="isAdmin">
-    <label for="new1">first name: </label>
-    <input id="new1" #firstName />
-    <label for="new2">last name: </label>
-    <input id="new2" #lastName />
-    <label for="new3">group: </label>
-    <input id="new3" #group />
+    <input class="add" placeholder="Фамилия" #lastName />
+    <input class="add" placeholder="Имя" #firstName />
+    <input class="add add-group" placeholder="№" #group />
     <button
       type="button"
       class="add-button"
@@ -17,12 +24,8 @@
         group.value = ''
       "
     >
-      Add
+      <img src="../../assets/add.png" />
     </button>
-  </div>
-  <div class="pagination">
-    <button (click)="clicked1($event)">-</button>
-    <button (click)="clicked2($event)">+</button>
   </div>
   <!-- <ngb-pagination
     [maxSize]="2"
@@ -189,7 +192,14 @@
     </tr>
     <tr *ngFor="let student of students; let i = index">
       <td class="align-c grey">{{ i + 1 }}</td>
-      <td class="name">{{ student.firstName }} {{ student.lastName }}</td>
+      <td class="name">
+        <div class="cell">
+          {{ student.lastName }} {{ student.firstName }}
+          <button *ngIf="isAdmin" type="button" class="delete" (click)="delete(student)">
+            x
+          </button>
+        </div>
+      </td>
       <td></td>
       <td></td>
       <td></td>

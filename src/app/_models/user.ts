@@ -7,5 +7,5 @@ export class User {
     username!: string;
     role!: Role;
     token?: string;
-    groups?: Array<Number>;
+    groups!: Array<Number>;
 }

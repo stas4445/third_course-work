@@ -18,6 +18,7 @@ import { Journal1Component } from './journal1/journal1.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './_services/in-memory-data.service';
+import { Journal2Component } from './journal2/journal2.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { InMemoryDataService } from './_services/in-memory-data.service';
         HomeComponent,
         AdminComponent,
         LoginComponent,
-        Journal1Component
+        Journal1Component,
+        Journal2Component
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

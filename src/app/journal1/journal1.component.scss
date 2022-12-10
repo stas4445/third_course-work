@@ -39,6 +39,15 @@ table {
   .name {
     padding: 8px;
   }
+  .cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+    }
+  }
 }
 
 .head {
@@ -46,6 +55,34 @@ table {
   margin: 0 40px;
   padding-bottom: 20px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
+  button {
+    border: none;
+    background-color: #fff;
+    img {
+      width: 20px;
+    }
+  }
+  .group {
+    display: flex;
+    gap: 20px;
+  }
+  .pagination {
+    display: flex;
+    flex-direction: column;
+  }
+  .add-group {
+    width: 35px;
+  }
+  .add {
+    color: #969696;
+    border: none;
+    border-bottom: 2px solid #969696;
+    margin-right: 10px;
+    padding-left: 8px;
+    &:focus {
+      outline: none;
+    }
+  }
 }

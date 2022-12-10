@@ -38,6 +38,9 @@ export class Journal1Component implements OnInit {
   }
   clicked2(event: any) {
     this.clicks++;
+    if (!this.userFromApi.groups.includes(this.clicks)) {
+      this.clicks = 1;
+    }
     this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.clicks));
   }
 
@@ -52,13 +55,18 @@ export class Journal1Component implements OnInit {
       });
   }
 
+  delete(student: Student): void {
+    this.students = this.students.filter(s => s !== student);
+    this.studentsService.deleteStudent(student.id).subscribe();
+  }
+
   get isAdmin() {
     return this.user && this.user.role === Role.Admin;
   }
 
   constructor(private studentsService: StudentService, private userService: UserService, private authenticationService: AuthenticationService) {
     this.user = this.authenticationService.userValue;
-    this.students = this.students.filter(s => s.group == this.user.groups?.includes(this.clicks));
+    // this.students = this.students.filter(s => s.group == this.user.groups?.includes(this.clicks));
     // this.page = 1;
     // this.loadPage();
   }
@@ -78,7 +86,7 @@ export class Journal1Component implements OnInit {
     this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.clicks));
   }
 
- 
+
 
   // onPageChanged(event: any) {
   //   this.loadPage();

@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_helpers';
 import { Role } from './_models';
 import { Journal1Component } from './journal1/journal1.component';
+import { Journal2Component } from './journal2/journal2.component';
 
 const routes: Routes = [
     {
@@ -19,7 +20,11 @@ const routes: Routes = [
         component: Journal1Component,
         canActivate: [AuthGuard]
     },
-    
+    {
+        path: 'journal2',
+        component: Journal2Component,
+        canActivate: [AuthGuard]
+    },
     {
         path: 'admin',
         component: AdminComponent,

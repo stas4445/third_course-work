@@ -39,6 +39,10 @@ export class StudentService {
     return this.httpClient.post<Student>(this.studentsUrl, student);
   }
 
+  deleteStudent(id: any): Observable<Student> {
+    const url = `${this.studentsUrl}/${id}`;
+    return this.httpClient.delete<Student>(url);
+  }
 
   // private GetPageData(students: Observable<Array<Student>>, page: number, itemsPerPage: number): Observable<Page> {
   //   if (page <= 0) {

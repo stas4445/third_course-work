@@ -1,7 +1,7 @@
 import { Component, Output } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
+import { Role, User } from '../_models';
 import { UserService, AuthenticationService } from '../_services';
 
 @Component({
@@ -19,7 +19,9 @@ export class HomeComponent {
     ) {
         this.user = this.authenticationService.userValue;
     }
-
+    get isAdmin() {
+        return this.user && this.user.role === Role.Admin;
+      }
     ngOnInit() {
         this.loading = true;
         this.userService.getById(this.user.id).pipe(first()).subscribe(user => {
