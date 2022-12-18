@@ -1,6 +1,6 @@
 <div class="head">
   <div class="group">
-    <h1>Группа {{ clicks }}</h1>
+    <h1>Группа {{ this.userFromApi.groups[this.clicks] }}</h1>
     <div class="pagination">
       <button (click)="clicked2($event)">
         <img src="../../assets/up.png" />
@@ -40,7 +40,7 @@
 
 <table class="table">
   <tbody>
-    <tr class="header">
+    <!-- <tr class="header">
       <td class="td-large" colspan="2">Дни недели</td>
       <td class="day" colspan="5">Понедельник</td>
       <td class="day" colspan="5">Вторник</td>
@@ -103,9 +103,9 @@
       <td></td>
       <td></td>
       <td></td>
-    </tr>
+    </tr> -->
     <tr>
-      <td class="align-c" colspan="2">Количество академических часов</td>
+      <td class="align-c" colspan="2">Отметка о посещаемости и успеваемости</td>
       <td></td>
       <td></td>
       <td></td>
@@ -147,7 +147,7 @@
       <td></td>
       <td></td>
     </tr>
-    <tr>
+    <!-- <tr>
       <td class="align-c td-large3" colspan="2">Название дисциплины</td>
       <td></td>
       <td></td>
@@ -189,7 +189,7 @@
       <td></td>
       <td></td>
       <td></td>
-    </tr>
+    </tr> -->
     <tr *ngFor="let student of students; let i = index">
       <td class="align-c grey">{{ i + 1 }}</td>
       <td class="name">

@@ -1,7 +1,6 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-// import { group } from '../journal1/journal1.component';
-import { Group, Student } from '../_models';
+import { Student } from '../_models';
 
 @Injectable({
   providedIn: 'root'

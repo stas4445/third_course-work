@@ -7,7 +7,7 @@ import { Role } from '../_models';
 
 const users = [
     { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin, groups: [1, 2, 3] },
-    { id: 2, username: 'user1', password: 'user1', firstName: 'Вячеслав', lastName: 'Сельпо', role: Role.User, groups: [1, 2] },
+    { id: 2, username: 'user1', password: 'user1', firstName: 'Вячеслав', lastName: 'Сельпо', role: Role.User, groups: [2, 3] },
     { id: 3, username: 'user2', password: 'user2', firstName: 'Ирина', lastName: 'Калитка', role: Role.User, groups: [1, 2, 3] },
 ];
 

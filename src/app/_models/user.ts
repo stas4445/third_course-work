@@ -8,4 +8,5 @@ export class User {
     role!: Role;
     token?: string;
     groups!: Array<Number>;
+    disciplines?: Array<Number>;
 }

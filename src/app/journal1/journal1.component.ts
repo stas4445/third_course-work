@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { StudentService } from '../_services/student.service';
 import { Role, Student } from '../_models';
 import { User } from '../_models';
 import { AuthenticationService, UserService } from '../_services';
-import { filter } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -13,35 +12,28 @@ import { first } from 'rxjs/operators';
 })
 export class Journal1Component implements OnInit {
 
-  // public page!: number;
-
-  // public anyPage: any;
-
-  // public collectionSize!: number;
-  // public itemsPerPage: number = 5;
-
-
   public students: Array<Student> = [];
 
   loading = false;
   user: User;
   userFromApi!: User;
 
-  clicks: number = 1;
+  clicks = 0;
+  ruCollator = new Intl.Collator('ru-RU');
 
   clicked1(event: any) {
     this.clicks--;
-    if (this.clicks == 0) {
-      this.clicks = 1;
+    if (this.clicks == -1) {
+      this.clicks = 0;
     }
-    this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.clicks));
+    this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.userFromApi.groups[this.clicks]).sort((a, b) => this.ruCollator.compare(a.lastName, b.lastName)));
   }
   clicked2(event: any) {
     this.clicks++;
-    if (!this.userFromApi.groups.includes(this.clicks)) {
-      this.clicks = 1;
+    if (!this.userFromApi.groups.includes(this.userFromApi.groups[this.clicks])) {
+      this.clicks = 0;
     }
-    this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.clicks));
+    this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.userFromApi.groups[this.clicks]).sort((a, b) => this.ruCollator.compare(a.lastName, b.lastName)));
   }
 
   add(firstName: string, lastName: string, group: any) {
@@ -66,9 +58,6 @@ export class Journal1Component implements OnInit {
 
   constructor(private studentsService: StudentService, private userService: UserService, private authenticationService: AuthenticationService) {
     this.user = this.authenticationService.userValue;
-    // this.students = this.students.filter(s => s.group == this.user.groups?.includes(this.clicks));
-    // this.page = 1;
-    // this.loadPage();
   }
 
 
@@ -83,34 +72,7 @@ export class Journal1Component implements OnInit {
   }
 
   getStudents(): void {
-    this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.clicks));
+    this.studentsService.getStudents().subscribe(s => this.students = s.filter(u => u.group == this.user.groups[this.clicks]).sort((a, b) => this.ruCollator.compare(a.lastName, b.lastName)));
   }
-
-
-
-  // onPageChanged(event: any) {
-  //   this.loadPage();
-  // }
-
-
-  // private loadPage() {
-  //   // this.studentsService.getStudents().subscribe(u => {
-  //   //   if (this.user.groups?.includes(this.clicks)) {
-  //   //     this.students = u;
-  //   //   }
-  //   // });
-  //   // this.studentsService.getStudents(this.page, this.itemsPerPage).pipe()
-  //   //   .subscribe(p => {
-  //   //     debugger;
-  //   //     // if(this.user.group?.includes(this.page)){
-  //   //       this.students = p.rows;
-  //   //       // p.rows = this.students?.filter(s => s.group == this.page);
-  //   //       // this.itemsPerPage = this.students.length;
-  //   //     // }
-  //   //     this.collectionSize = p.totalCount;
-
-  //   //   });
-  // }
-
 
 }

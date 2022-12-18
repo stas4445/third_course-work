@@ -1,6 +1,6 @@
 export class Student {
    id?: number;
-   group?: number;  //по факту это несёт информацию о странице
+   group?: number; 
    firstName!: string;
    lastName!: string; 
 }
